@@ -10,6 +10,10 @@ from .utils import (
     safe_request
 )
 
+import warnings
+from bs4 import XMLParsedAsHTMLWarning
+
+warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 class SpectrumCrawler:
     """
@@ -21,7 +25,7 @@ class SpectrumCrawler:
         self.seed_url = seed_url
         self.max_files = max_files
 
-        # Domain root, e.g. "https://spectrum.library.concordia.ca"
+        # Domain root, e.g., "https://spectrum.library.concordia.ca"
         parsed = urlparse(seed_url)
         self.domain_root = f"{parsed.scheme}://{parsed.netloc}"
 
@@ -30,7 +34,7 @@ class SpectrumCrawler:
         self.visited = set()
         self.pdf_links = []
 
-        # Robots handler
+        # Always respect robots.txt (default assignment requirement)
         self.robots = RobotsTxt(seed_url)
 
     def crawl(self):
@@ -74,7 +78,6 @@ class SpectrumCrawler:
                 else:
                     self.frontier.append(link)
 
-        # Return structured result
         return {
             "pdf_urls": self.pdf_links,
             "visited_count": len(self.visited),
@@ -83,10 +86,11 @@ class SpectrumCrawler:
 
     def _extract_links(self, base_url: str, html: str):
         """
-        Extract all links from a page, normalize them,
-        and return a list of valid URLs.
+        Extract all links, normalize them, and return a list of valid URLs.
         """
         soup = BeautifulSoup(html, "html.parser")
+
+
         collected = []
 
         for tag in soup.find_all("a"):
