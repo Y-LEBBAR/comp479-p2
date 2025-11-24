@@ -1,4 +1,4 @@
-import requests
+import requests #https://pypi.org/project/requests/2.32.5/
 from urllib.parse import urljoin, urlparse, urlunparse
 
 

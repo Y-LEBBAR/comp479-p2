@@ -1,5 +1,5 @@
 from collections import deque
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup #https://pypi.org/project/beautifulsoup4/4.14.2/
 from urllib.parse import urlparse
 
 from .robots import RobotsTxt

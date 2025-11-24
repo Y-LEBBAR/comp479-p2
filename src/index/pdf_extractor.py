@@ -1,6 +1,6 @@
 import io
 import requests
-from pdfminer.high_level import extract_text_to_fp
+from pdfminer.high_level import extract_text_to_fp #https://pypi.org/project/pdfminer.six/20251107/
 
 
 def download_pdf(url: str) -> bytes | None:

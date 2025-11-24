@@ -1,7 +1,7 @@
 import os
 import json
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np #https://pypi.org/project/numpy/2.3.5/
+from sklearn.feature_extraction.text import TfidfVectorizer #https://pypi.org/project/scikit-learn/1.7.2/
 from sklearn.cluster import KMeans
 
 from index.storage import load_index_json
