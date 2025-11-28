@@ -1,5 +1,5 @@
-from index.storage import load_index_json
-
+#from index.storage import load_index_json
+from src.index.storage import load_index_json
 
 def get_docs_for_term(index: dict, term: str) -> set[int]:
     """
@@ -59,4 +59,4 @@ def run_queries(index_path: str = "data/index.json"):
 
 
 if __name__ == "__main__":
-    run_queries()
+    run_queries(r"C:\Yannis\School\UNI\Y4-T1\COMP479\Coding\Project_2\data\index.json")
